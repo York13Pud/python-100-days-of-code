@@ -1,1 +1,1 @@
-# python3-course
+# 100daysofcode-python
