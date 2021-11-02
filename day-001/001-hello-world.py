@@ -10,3 +10,11 @@ print('An example of "a string"')
 
 # 2. you can use the \ as an escape charecter to get around python getting muddled up:
 print("An example of \"a string\"")
+
+# print text over multiple lines (use \n)
+print("Hello World!!\nHello World!!")
+
+# concatenate a number of strings together
+print("Hello "+"World!!")
+# Or
+print("Hello"+" "+"World!!")
