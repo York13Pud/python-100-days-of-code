@@ -1,0 +1,17 @@
+Process for debugging:
+
+1. Describe the problem, clearly.
+What is the issue?
+What is the code meant to do?
+
+2. Reproduce the bug.
+
+3. Play Computer and go over each line.
+
+4. Fix the Errors
+
+5. Use print statements.
+
+6. Use a debugger.
+Use a visualiser like pythontutor.com to step through the code to see what is happening.
+Use breakpoints.
