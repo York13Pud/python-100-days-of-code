@@ -5,7 +5,7 @@ from clear import clear_screen
 import random
 import time
 
-# --- display the logo:
+# --- display the main logo:
 print(logo)
 print("The first round will start in two seconds.")
 time.sleep(2)
