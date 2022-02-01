@@ -1,4 +1,3 @@
-from concurrent.futures.process import _WorkItem
 from tkinter import *
 import math
 
@@ -88,6 +87,7 @@ title_label.grid(row=0, column=1, sticky="N")
 canvas = Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0, bd=0)
 
 background = PhotoImage(file="./tomato.png")
+# 100, 112 are positional, not the size.
 canvas.create_image(100,112,image=background)
 
 timer_text = canvas.create_text(100,132, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
