@@ -10,6 +10,7 @@ try:
 except FileNotFoundError:
     file = open("myfile.txt", "w")
     file.write("A text file")
+
 # For the key error, we will print a statement that it cannot be found.
 # error_message will be the key name that we tried to pass:
 except KeyError as error_message:

@@ -8,7 +8,7 @@ student_dict = {
 
 # Create a data frame from the student dict:
 student_data_frame = pandas.DataFrame(student_dict)
-#print(student_data_frame)
+print(type(student_data_frame))
 
 # Loop through each of the rows using the iterrows method that is part of pandas:
 for (index, row) in student_data_frame.iterrows():
