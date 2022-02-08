@@ -1,7 +1,6 @@
 # API endpoint is the URL of the API.
 # API request is an action to perform against the API endpoint.
 
-from curses import keyname
 import requests
 
 
