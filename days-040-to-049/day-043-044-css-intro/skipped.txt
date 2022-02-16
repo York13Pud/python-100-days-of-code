@@ -1,0 +1,1 @@
+skipped as I was ok with the bit of CSS i would need for web scraping.
