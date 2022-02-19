@@ -6,3 +6,6 @@
 
 # Ignore .vscode folder
 .vscode
+
+# Ignore .cache files
+.cache

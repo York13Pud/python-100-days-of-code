@@ -55,7 +55,7 @@ scope = "playlist-modify-private"
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id = client_id, client_secret = client_secret, redirect_uri = client_redirect_url, scope=scope))
 
 # --- Get the current username for use later on:
-current_user = sp.current_user()
+current_user = sp.current_user()["id"]
 
 # --- Create a new playlist and get its ID for use later on:
 create_test_playlist = sp.user_playlist_create(user = current_user, name = f"Top-100-{date_to_use}", description="Test", public=False)
