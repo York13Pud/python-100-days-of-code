@@ -1,0 +1,25 @@
+program flow:
+0. Set the cookie count text to Short numbers OFF. Done.
+1. click on cookie for x number of minutes. Done.
+2. stop clicking after x number of minutes is up. Done.
+   a. set while loop to false. Done when counter is 0.
+   b. get total cookies collected. 50%
+3. check to see what upgrades are available. Done.
+   a. check to see what elements are enabled.
+   b. add the enabled elements to a list / dictionary.
+   c. cycle through the list in reverse so highest value to lowest.
+   d. once all upgrades are disabled, check cookie count to see if any is remaining.
+      i.  if so, buy options
+      ii. if not, go back to clicking cookies
+4. check to see what options are available. Done.
+   a. check to see what elements are enabled.
+   b. add the enabled elements to a list / dictionary.
+   c. cycle through the list in reverse so highest value to lowest.
+   d. once all options are disabled, go back to clicking cookies.
+5. restart the timer for click. Done.
+6. go back to beginning. Done.
+
+Extra:
+0. Turn the bloody sound off. Done.
+1. Restore saved game data. Done.
+2. Save state to a file. Done.
