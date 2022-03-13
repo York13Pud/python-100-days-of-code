@@ -1,0 +1,9 @@
+- A simple quickstart app:
+https://flask.palletsprojects.com/en/1.1.x/quickstart/
+
+- To run a flask app using the built in dev web server, use the following commands:
+
+export FLASK_APP=path_to_python_main_file.py
+flask run
+
+- You will then get a URL to the dev server to test.
