@@ -1,0 +1,11 @@
+You can run flask in debugging mode during development so you don't need to restart the server each time. Do this via a terminal export:
+
+export FLASK_APP=01-flask-urls.py
+export FLASK_ENV=development
+
+In the app, add debug=True to app.run. For example:
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+As part of the debugging, when you load a page and an error occurs, you will get debug messages appear, rather than a 400 / 500 error.
