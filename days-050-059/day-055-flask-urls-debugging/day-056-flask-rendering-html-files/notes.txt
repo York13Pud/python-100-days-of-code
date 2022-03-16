@@ -1,0 +1,5 @@
+HTML files are called templates in flask. By default, flask looks for templates in a folder called 'templates'.
+
+You can use subfolders in the templates folder. You can't put html files outside of the templates folder or it bitch that it can't find it.
+
+Static files, such as images and CSS files must be put into a folder called static.
