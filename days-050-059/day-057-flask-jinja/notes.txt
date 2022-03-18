@@ -1,0 +1,38 @@
+To use an imported module with an HTML template, import the module in the server.py file, do what you need to in the
+server.py file, define it as a variable and then pass it to HTML file as a **kwarg in the render_template call:
+
+@app.route('/')
+def hello_world():
+    random_number = random.randint(1,10)
+    return render_template('index.html', num=random_number)
+
+To use python code inside the HTML file, put the code inside {{ python code here }}. For example:
+<h2>The value of 5 * 6 is {{5*6}}</h2>
+
+The {{ }} can go anywhere and be used multiple times. It's similar in layout to how PHP works.
+
+The only catch with {{ }} is that they apply only to a single line. Multi-line statements, such as a for loop, require a different method.
+This is done with {% for loop starts here %}. Then, put what you need to do below it as normal and then you have to end the for loop
+using {% endfor %}. For example:
+
+<body>
+    {% for blog_post in results:%}
+        <h2>{{ blog_post["title"] }}</h2>
+        <h2>{{ blog_post["subtitle"] }}</h2>
+    {% endfor %}
+</body>
+
+An if statement would be similar:
+
+<body>
+    {% if a > b:%}
+        <h2>A is higher than B</h2>
+    {% else:%}
+        <h2>B is higher than A</h2>
+    {% endif %}
+</body>
+
+If you want to call a URL in an anchor tag, you can do it the normal way or you can use the url_for method to create the link
+if the page is in the python site list. For example, the below will call the blog function:
+
+<h3><a href="{{ url_for('blog') }}">Go to my blog</h3>
