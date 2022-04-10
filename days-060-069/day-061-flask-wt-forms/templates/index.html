@@ -1,0 +1,17 @@
+<!-- Use the base.html file as a template for the page that will be be filed out by using the blocks below. -->
+{% extends "bootstrap/base.html" %}
+
+<!-- Sets the title of the page in the title block in base.html. -->
+{% block title %}Secrets{% endblock %}
+
+<!-- Sets the content of the page in the content block in base.html. -->
+<!-- Note: If the block name is used twice, you will get an error telling you it's called twice.-->
+{% block content %}
+<div class="jumbotron">
+	<div class="container">
+		<h1>Welcome</h1>
+		<p>Are you ready to discover my secret?</p>
+		<a class="btn btn-primary btn-lg" href="login">Login</a>
+	</div>
+</div>
+{% endblock %}

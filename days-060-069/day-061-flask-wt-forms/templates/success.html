@@ -1,0 +1,15 @@
+<!-- Use the base.html file as a template for the page that will be be filed out by using the blocks below. -->
+{% extends "bootstrap/base.html" %}
+
+<!-- Sets the title of the page in the title block in base.html. -->
+{% block title %}Success{% endblock %}
+
+<!-- Sets the content of the page in the content block in base.html. -->
+<!-- Note: If the block name is used twice, you will get an error telling you it's called twice.-->
+{% block content %}
+	<div class="container">
+		<h1>Top Secret </h1>
+		<iframe src="https://giphy.com/embed/Ju7l5y9osyymQ" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+		<p><a href="https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ">via GIPHY</a></p>
+	</div>
+{% endblock %}

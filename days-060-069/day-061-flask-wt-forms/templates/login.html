@@ -1,0 +1,35 @@
+<!-- Use the base.html file as a template for the page that will be be filed out by using the blocks below. -->
+{% extends "bootstrap/base.html" %}
+
+<!-- Sets the title of the page in the title block in base.html. -->
+{% block title %}Login{% endblock %}
+
+<!-- Sets the content of the page in the content block in base.html. -->
+<!-- Note: If the block name is used twice, you will get an error telling you it's called twice.-->
+{% block content %}
+   <div class="container">
+		<h1>Login</h1>
+		<form action={{ url_for('login') }} method="post" novalidate>
+			{{ form.csrf_token }}
+			<table>
+				<tr>
+					<td>{{ form.email.label }}</td>
+					<td>{{ form.email(size=30) }}</td>
+					<td>{% for err in form.email.errors %}
+					<span style="color: red">{{ err }}</span>
+					{% endfor %}</td>
+				</tr>
+				<tr>
+					<td>{{ form.password.label }}</td>
+					<td>{{ form.password(size=30) }}</td>
+					<td>{% for err in form.password.errors %}
+					<span style="color: red">{{ err }}</span>
+					{% endfor %}</td>
+				</tr>
+				<tr>
+					<td>{{ form.submit }}</td>
+				</tr>
+			</table>
+		</form>
+   </div>
+{% endblock %}

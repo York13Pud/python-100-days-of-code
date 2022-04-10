@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book</title>
+</head>
+<body>
+    <h1>Delete A Book</h1>
+    {% if books == []: %}
+        <h2>Library is empty</h2>
+    {% else %}
+        <table border=1>
+            <tr>
+                <th>Book Id</th>
+                <th>Book Title</th>
+                <th>Book Author</th>
+                <th>Book Rating</th>
+            </tr>
+            <tr>
+                <td><center>{{ book.id }}</center></td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td><center>{{ book.rating }} / 10</center></td>
+            </tr>
+        </table>
+{% endif %}
+    <br><br>
+    <form action="{{ url_for("edit", id=book.id) }}" method="POST">
+        <label>Update Rating To:</label>
+        <input type="text" name="book_rating">
+        <button type="submit">Update Rating</button>
+    </form>
+</body>
+</html>
