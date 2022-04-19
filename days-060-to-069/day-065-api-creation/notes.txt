@@ -1,0 +1,16 @@
+Two rules for creating API's:
+1. Use HTTP request verb. The verbs are:
+   - GET
+   - POST
+   - PUT
+   - PATCH
+   - DELETE
+2. Use specific pattern of routes / enpoint URL's.
+   - Put simply, make the routes make sense. For example /movies/<moviename>
+
+Serialisation is the process of converting the results of a SQL query into a JSON format that can be returned.
+
+PUT replaces an existing entry with a complete rewrite of the existing record. Typically, you change one 
+thing (maybe more) but the entire record is updated.
+
+PATCH only updates the field in the record where the data changes. Much more efficient.

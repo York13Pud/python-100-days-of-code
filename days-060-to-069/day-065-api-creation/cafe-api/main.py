@@ -1,6 +1,6 @@
-from crypt import methods
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from markupsafe import escape
 from random import randint
 
 # --- Create the application:
@@ -34,7 +34,7 @@ class Cafe(db.Model):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
     
 # --- Define the root route:
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
     return render_template("index.html")
 
@@ -73,7 +73,7 @@ def random_cafe_m2():
     random_cafe_chosen = query_db.get(randint(1, query_db.count()))
     print(random_cafe_chosen.name)
     params = {column.name: random_cafe_chosen.__getattribute__(column.name) for column in Cafe.__table__.columns}
-    return jsonify(params)
+    return jsonify(params), 200
 
 
 # --- Return all the items in the table:
@@ -100,15 +100,15 @@ def all_cafes():
           "coffee_price": cafe.coffee_price,
         }})
     all_cafes = {"cafes": all_cafes_list}
-    return jsonify(all_cafes)
+    return jsonify(all_cafes), 200
 
 
 # --- Method 2: Shorter amount of code bu less control of the data structure:
-@app.route("/all2")
+@app.route("/all2", methods=["GET"])
 def get_all_cafes():
     cafes = db.session.query(Cafe).all()
     #This uses a List Comprehension but you could also split it into 3 lines.
-    return jsonify(cafes=[cafe.to_dict() for cafe in cafes])
+    return jsonify(cafes=[cafe.to_dict() for cafe in cafes]), 200
 
 @app.route("/search", methods=["GET"])
 def search_by_location():
@@ -135,17 +135,78 @@ def search_by_location():
           "coffee_price": cafe.coffee_price,
         }})
     all_cafes = {"cafes": all_cafes_list}
-    return jsonify(all_cafes)
+    return jsonify(all_cafes), 200
 
 
-## HTTP GET - Read Record
+@app.route("/add", methods=["POST"])
+def add_record():
+    try:
+        add_cafe = Cafe(
+            name=request.form.get("name"),
+            map_url=request.form.get("map_url"),
+            img_url=request.form.get("img_url"),
+            location=request.form.get("location"),
+            seats=request.form.get("seats"),
+            has_toilet=bool(request.form.get("has_toilets")),
+            has_wifi=bool(request.form.get("has_wifi")),
+            has_sockets=bool(request.form.get("has_sockets")),
+            can_take_calls=bool(request.form.get("can_take_calls")),
+            coffee_price=request.form.get("coffee_price")
+        )
+        db.session.add(add_cafe)
+        db.session.commit()
+        
+    except Exception as error:
+        return jsonify(response={"error": (str(error.orig))})
+  
+    return jsonify(response={"success": "Successfully added the new cafe."}), 200
 
-## HTTP POST - Create Record
+@app.route("/update-price/<int:cafe_id>", methods=["PATCH"])
+def update_price(cafe_id):
+    cafe_id_to_update = cafe_id
+    
+    try:
+        update_coffee_price = db.session.query(Cafe).get(cafe_id_to_update)
+        update_coffee_price.coffee_price = request.form.get("coffee_price")
+        
+        db.session.commit()
+    
+    except AttributeError as error:
+        print("test")
+        return jsonify(response={"error": "Record or field does not exist"}), 404
+        
+    except Exception as error:
+        return jsonify(response={"error": (str(error.orig))}), 500
+    
+    return jsonify(response={"success": f"Successfully updated the new coffee price for {cafe_id}."}), 200
 
-## HTTP PUT/PATCH - Update Record
+# /<int:cafe_id>/<string:api_key>
+# def delete_cafe(cafe_id, api_key):
 
-## HTTP DELETE - Delete Record
+@app.route("/delete-cafe", methods = ["DELETE"])
+def delete_cafe():
+    """This function will delete a record from the Cafe database / table, 
+    as long as the API key matches and the Id passed is valid."""
+    
+    cafe_id_to_delete = request.args.get("cafe_id")
+    sent_api_key = request.args.get("api_key")
+    required_api_key = "password"
+    
+    if sent_api_key == required_api_key:
+        try:
+            delete_cafe = db.session.query(Cafe).get(cafe_id_to_delete)
+            db.session.delete(delete_cafe)
+            db.session.commit()
+        
+        except:
+            return jsonify(response={"error": "Please check the id and api key you provided is correct."}), 500
+        
+        return jsonify(response={"success": f"Successfully deleted cafe {cafe_id_to_delete}."}), 200
+    
+    else:
+        return jsonify(response={"error": "Invalid API key received."}), 500
 
 
+    
 if __name__ == '__main__':
     app.run(debug=True)
