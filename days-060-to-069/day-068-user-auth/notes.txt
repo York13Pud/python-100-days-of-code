@@ -1,0 +1,15 @@
+Use hashing to encrypt passwords as they take a long time to reverse engineer the hash number used to hash the password.
+
+Decrypting a has is not done when a user logs in. It simply hashes the password the user entered and compares it to what was stored
+in the DB. If it matches, you are ok to login. SHA-256 is an example as is MD5.
+
+A hash table, with regards to hacking passwords is a list of known hashes and what that hashes password is.
+
+Note: Don't use MD5 for hashing passwords. It's easily hacked.
+
+Salting is the process of taking a users chosen password and adding a random set of numbers to it to increase the complexity / length
+of that password, prior to hashing it. The salt is stored in the database and the user never sees it. They only see the password they chose.
+
+The end result is that you store the username, salt and hash in the database. You don't store their password.
+
+A standard encryption used is bcrypt. It is slow to create a hash table from.
