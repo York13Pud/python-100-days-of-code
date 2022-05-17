@@ -7,7 +7,7 @@
 <!-- Sets the content of the page in the content block in base.html. -->
 <!-- Note: If the block name is used twice, you will get an error telling you it's called twice.-->
 {% block content %}
-   <div class="container">
+   <div class="container w-75">
 		<h1>Login</h1>
 		<form action={{ url_for('login') }} method="post" novalidate>
 			{{ form.csrf_token }}

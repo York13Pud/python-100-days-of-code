@@ -21,7 +21,7 @@ class LoginForm(FlaskForm):
     email      = EmailField(label='Email:', description='email', validators=[Email(), DataRequired(message="Please enter a valid email address.")])
     # DataRequired make the field a required field and cannot be blank.
     password   = PasswordField(label='Password:', description='Password', validators=[DataRequired(message="Please enter a password."), Length(min=8)])
-    submit     = SubmitField(label='Log In')
+    submit     = SubmitField(label='Log In', button_map={'submit':'dark'})
 
 # --- Create the route for the root of the site:
 @app.route("/")
